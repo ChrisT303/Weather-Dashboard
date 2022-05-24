@@ -4,3 +4,12 @@
     text-align: center;
     padding: 10px;
   }
+
+  .container {
+    margin-top: 20px;
+  }
+
+ .row {
+   margin-left: 20px;
+   justify-content: space-around;
+ }
