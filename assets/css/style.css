@@ -13,3 +13,15 @@
    margin-left: 20px;
    justify-content: space-around;
  }
+
+ #forecast {
+   display: flex;
+ }
+
+ .forecastCard {
+   width: 200px;
+ }
+
+ .forecastCard img {
+   width: 100px;
+ }
