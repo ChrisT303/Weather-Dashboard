@@ -1,3 +1,6 @@
+let citiesArr = [];
+
+
 document.getElementById('search-button').addEventListener('click', handleClick);
 
 
@@ -53,8 +56,12 @@ function handleClick() {
 
              
       }
+        citiesArr.unshift(city);
+
+        handleCities();
+
    
-    })
+    });
     document.querySelector(".hide").style.display = "block";
     
    
@@ -62,3 +69,16 @@ function handleClick() {
 }
 
 
+function handleCities () {
+  $("#searchHistory").empty();
+
+  for (let i = 0; i < citiesArr.length; i++) {
+    
+    let cityBtn = $('<button>');
+    cityBtn.addClass("city btn btn-primary");
+    cityBtn.attr("city-input", citiesArr[i]);
+    cityBtn.text(citiesArr[i]);
+    $("#searchHistory").append(cityBtn);
+    
+  }
+}
