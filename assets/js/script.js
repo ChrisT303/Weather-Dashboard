@@ -56,11 +56,13 @@ function handleClick() {
 
              
       }
+
         citiesArr.unshift(city);
 
         handleCities();
+        pastSearhces();
 
-   
+        localStorage.setItem("searchHistory", JSON.stringify(citiesArr));
     });
     document.querySelector(".hide").style.display = "block";
     
@@ -81,4 +83,27 @@ function handleCities () {
     $("#searchHistory").append(cityBtn);
     
   }
+};
+
+function pastSearhces() {
+   $(".btn-primary").click(function () {
+     let pastCity = $(this).attr("city-input");
+     $("city-input").prop("value", pastCity);
+
+     handleClick();
+
+   });
+
 }
+
+function displayCities() {
+  let storedCities = JSON.parse(localStorage.getItem("searchHistory"));
+
+  if (storedCities !== null) {
+    citiesArr = storedCities;
+  }
+   handleCities(citiesArr);
+}
+
+// pastSearhces();
+// displayCities();
