@@ -25,3 +25,11 @@
  .forecastCard img {
    width: 100px;
  }
+
+.hide {
+   display: none;
+ }
+
+ h2 {
+   display: none;
+ }

@@ -20,22 +20,23 @@ function handleClick() {
       let description = data.current.weather[0].description;
       let temp = Math.round(data.current.temp);
       let humidity = data.current.humidity;
-      let windSpeed = data.current.wind_speed;
+      let windSpeed = Math.round(data.current.wind_speed);
       let uvi = data.current.uvi;
       let name = city;
 
       document.getElementById('icon').setAttribute('src',icon);
       document.getElementById("cityDescription").innerHTML = description;
-      document.getElementById("cityTemp").innerHTML = temp;
-      document.getElementById("cityHumididty").innerHTML = humidity;
-      document.getElementById("cityWindSpeed").innerHTML = windSpeed;
+      document.getElementById("cityTemp").innerHTML = temp + "°";
+      document.getElementById("cityHumididty").innerHTML = humidity + "%";
+      document.getElementById("cityWindSpeed").innerHTML = windSpeed + " mph";
       document.getElementById("cityUVI").innerHTML = uvi;
       document.getElementById("cityName").innerHTML = name;
+      document.getElementById("currentDate").innerHTML = moment().format("MMM Do YYYY"); 
 
       // Daily weather data
 
       for (let i = 0; i < 5; i++) {
-        let date = moment().format("MMM Do YYYY");     
+        let date =  moment().add(i+1,"days").format("MM/DD/YYYY"); 
         let icon2 = data.daily[i].weather[0].icon;
         let temp = data.daily[i].temp.day;
         let wind = data.daily[i].wind_speed;
@@ -45,15 +46,19 @@ function handleClick() {
         `<div class="forecastCard">
               <h5>${date}</h5>
               <img src="http://openweathermap.org/img/w/${icon2}.png">
-              <h6>Temp: ${temp}</h6>
-              <h6>Wind: ${wind}</h6>
-              <h6>Humidity: ${humidity}</h6>
-          </div>`
-      }
+              <h6>Temp: ${Math.round(temp) + "°"}</h6>
+              <h6>Wind: ${Math.round(wind) + " mph"}</h6>
+              <h6>Humidity: ${humidity + "%"}</h6>
+              </div>`
 
+             
+      }
+   
     })
+    document.querySelector(".hide").style.display = "block";
+    
+   
   });
 }
-
 
 
