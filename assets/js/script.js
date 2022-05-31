@@ -1,4 +1,5 @@
 let citiesArr = [];
+let cityStorage = localStorage.setItem("searchHistory", JSON.stringify(citiesArr));
 
 
 function handleClick() {
@@ -41,6 +42,11 @@ function handleClick() {
         let wind = data.daily[i].wind_speed;
         let humidity = data.daily[i].humidity;
 
+        if (citiesArr[i] == name) {
+          return;
+        }
+           
+
         document.getElementById('forecast').innerHTML += 
         `<div class="forecastCard">
               <h5>${date}</h5>
@@ -49,9 +55,14 @@ function handleClick() {
               <h6>Wind: ${Math.round(wind) + " mph"}</h6>
               <h6>Humidity: ${humidity + "%"}</h6>
               </div>`
-
+       
+          if (citiesArr[i] == name) {
+            return;
+          }
              
       }
+
+      
 
         citiesArr.unshift(city);
 
@@ -96,7 +107,7 @@ function pastSearhces() {
      handleClick();
 
    });
-
+  
 }
 
 function displayCities() {
@@ -110,3 +121,4 @@ function displayCities() {
 
 pastSearhces();
 displayCities();
+
