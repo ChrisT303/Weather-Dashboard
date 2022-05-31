@@ -1,10 +1,6 @@
 let citiesArr = [];
 
 
-document.getElementById('search-button').addEventListener('click', handleClick);
-
-
-
 function handleClick() {
   let city = document.querySelector('input').value;
   if (!city) return;
@@ -70,6 +66,13 @@ function handleClick() {
   });
 }
 
+$("#city-input").keypress(function (event) {
+  if (event.key === "Enter") {
+    // event.preventDefault();
+    $("#search-button").click();
+  }
+});
+
 
 function handleCities () {
   $("#searchHistory").empty();
@@ -105,5 +108,5 @@ function displayCities() {
    handleCities(citiesArr);
 }
 
-// pastSearhces();
-// displayCities();
+pastSearhces();
+displayCities();
