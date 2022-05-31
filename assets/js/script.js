@@ -2,6 +2,7 @@ let citiesArr = [];
 let cityStorage = localStorage.setItem("searchHistory", JSON.stringify(citiesArr));
 
 
+
 function handleClick() {
   let city = document.querySelector('input').value;
   if (!city) return;
@@ -23,6 +24,7 @@ function handleClick() {
       let windSpeed = Math.round(data.current.wind_speed);
       let uvi = data.current.uvi;
       let name = city;
+      
 
       document.getElementById('icon').setAttribute('src',icon);
       document.getElementById("cityDescription").innerHTML = description;
@@ -33,7 +35,17 @@ function handleClick() {
       document.getElementById("cityName").innerHTML = name;
       document.getElementById("currentDate").innerHTML = moment().format("MMM Do YYYY"); 
 
-      // Daily weather data
+      $("#cityUVI").each(function() {
+        if (uvi < 3) {
+          $(this).addClass("favorable");
+        }
+        else if(uvi >= 3 && uvi <= 8) {
+          $(this).addClass("moderate");
+        }
+        else {
+          $(this).addClass("severe")
+        }
+      });
 
       for (let i = 0; i < 5; i++) {
         let date =  moment().add(i+1,"days").format("MM/DD/YYYY"); 
@@ -41,11 +53,9 @@ function handleClick() {
         let temp = data.daily[i].temp.day;
         let wind = data.daily[i].wind_speed;
         let humidity = data.daily[i].humidity;
+        // let allInfo = date + icon2 + temp + wind + humidity;
 
-        if (citiesArr[i] == name) {
-          return;
-        }
-           
+    
 
         document.getElementById('forecast').innerHTML += 
         `<div class="forecastCard">
@@ -53,21 +63,22 @@ function handleClick() {
               <img src="http://openweathermap.org/img/w/${icon2}.png">
               <h6>Temp: ${Math.round(temp) + "°"}</h6>
               <h6>Wind: ${Math.round(wind) + " mph"}</h6>
-              <h6>Humidity: ${humidity + "%"}</h6>
+             <h6>Humidity: ${humidity + "%"}</h6>
               </div>`
+
+          // if (allInfo.name && name) {
+          //     return;
+          // }
        
           if (citiesArr[i] == name) {
             return;
           }
              
       }
-
-      
-
         citiesArr.unshift(city);
 
         handleCities();
-        pastSearhces();
+        // pastSearhces();
 
         localStorage.setItem("searchHistory", JSON.stringify(citiesArr));
     });
@@ -84,6 +95,10 @@ $("#city-input").keypress(function (event) {
   }
 });
 
+// function handleUVI {
+//   $("#cityUVI")
+// }
+
 
 function handleCities () {
   $("#searchHistory").empty();
@@ -97,18 +112,24 @@ function handleCities () {
     $("#searchHistory").append(cityBtn);
     
   }
-};
+  $(".btn-primary").on("click", function () {
+    let pastCity = $(this).attr("city-input");
+    $("city-input").prop("data", pastCity);
 
-function pastSearhces() {
-   $(".btn-primary").click(function () {
-     let pastCity = $(this).attr("city-input");
-     $("city-input").prop("value", pastCity);
-
-     handleClick();
-
-   });
+    handleClick();
+});
   
 }
+
+// function pastSearhces() {
+//    $(".btn-primary").on("click", function () {
+//      let pastCity = $(this).attr("city-input");
+//      $("city-input").prop("value", pastCity);
+
+//      handleClick();
+
+//    });
+  
 
 function displayCities() {
   let storedCities = JSON.parse(localStorage.getItem("searchHistory"));
@@ -119,6 +140,6 @@ function displayCities() {
    handleCities(citiesArr);
 }
 
-pastSearhces();
+// pastSearhces();
 displayCities();
 

@@ -34,3 +34,15 @@
    display: none;
  }
 
+.favorable {
+  background-color: rgb(40, 224, 162);
+}
+
+.moderate {
+  background-color: rgb(197, 25, 203);
+
+}
+
+.severe {
+  background-color: rgb(245, 7, 7);
+}
