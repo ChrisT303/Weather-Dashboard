@@ -1,9 +1,6 @@
 let citiesArr = [];
-let cityStorage = localStorage.setItem("searchHistory", JSON.stringify(citiesArr));
 
-
-
-function handleClick() {
+function handleWeather() {
   let city = document.querySelector('input').value;
   if (!city) return;
   let url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
@@ -34,6 +31,7 @@ function handleClick() {
       document.getElementById("cityUVI").innerHTML = uvi;
       document.getElementById("cityName").innerHTML = name;
       document.getElementById("currentDate").innerHTML = moment().format("MMM Do YYYY"); 
+ 
 
       $("#cityUVI").each(function() {
         if (uvi < 3) {
@@ -47,15 +45,14 @@ function handleClick() {
         }
       });
 
+      document.getElementById('forecast').innerHTML = '';
+
       for (let i = 0; i < 5; i++) {
         let date =  moment().add(i+1,"days").format("MM/DD/YYYY"); 
         let icon2 = data.daily[i].weather[0].icon;
         let temp = data.daily[i].temp.day;
         let wind = data.daily[i].wind_speed;
         let humidity = data.daily[i].humidity;
-        // let allInfo = date + icon2 + temp + wind + humidity;
-
-    
 
         document.getElementById('forecast').innerHTML += 
         `<div class="forecastCard">
@@ -65,39 +62,35 @@ function handleClick() {
               <h6>Wind: ${Math.round(wind) + " mph"}</h6>
              <h6>Humidity: ${humidity + "%"}</h6>
               </div>`
-
-          // if (allInfo.name && name) {
-          //     return;
-          // }
-       
-          if (citiesArr[i] == name) {
-            return;
-          }
              
+      }
+      
+      for (let i = 0; i < citiesArr.length; i++) {    
+       if(citiesArr[i] == city){
+            return;
+         } 
+        
       }
         citiesArr.unshift(city);
 
         handleCities();
-        // pastSearhces();
+        pastSearhces();
 
         localStorage.setItem("searchHistory", JSON.stringify(citiesArr));
     });
     document.querySelector(".hide").style.display = "block";
     
+    pastSearhces();
    
   });
 }
 
 $("#city-input").keypress(function (event) {
-  if (event.key === "Enter") {
-    // event.preventDefault();
+    if (event.key === "Enter") {
     $("#search-button").click();
   }
 });
 
-// function handleUVI {
-//   $("#cityUVI")
-// }
 
 
 function handleCities () {
@@ -112,24 +105,17 @@ function handleCities () {
     $("#searchHistory").append(cityBtn);
     
   }
-  $(".btn-primary").on("click", function () {
-    let pastCity = $(this).attr("city-input");
-    $("city-input").prop("data", pastCity);
-
-    handleClick();
-});
   
 }
 
-// function pastSearhces() {
-//    $(".btn-primary").on("click", function () {
-//      let pastCity = $(this).attr("city-input");
-//      $("city-input").prop("value", pastCity);
+function pastSearhces() {
+   $(".btn-primary").on("click", function () {
+     let pastCity = $(this).attr("city-input");
+     $("#city-input").prop("value", pastCity);
+     handleWeather();
 
-//      handleClick();
-
-//    });
-  
+   });
+  }
 
 function displayCities() {
   let storedCities = JSON.parse(localStorage.getItem("searchHistory"));
@@ -140,6 +126,11 @@ function displayCities() {
    handleCities(citiesArr);
 }
 
-// pastSearhces();
+$(window).on("load", function(){
+  $("#city-input").prop("value", citiesArr[0]);
+  handleWeather();
+})
+
+pastSearhces();
 displayCities();
 
