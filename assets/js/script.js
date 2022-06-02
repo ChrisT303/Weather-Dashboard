@@ -39,6 +39,7 @@ function handleWeather() {
       saveStorage(city);
       console.log(data);
       let icon = `http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`
+      
 
       let description = data.current.weather[0].description;
       let temp = Math.round(data.current.temp);
@@ -46,6 +47,7 @@ function handleWeather() {
       let windSpeed = Math.round(data.current.wind_speed);
       let uvi = data.current.uvi;
       let name = city;
+ 
 
       document.getElementById('icon').setAttribute('src', icon);
       document.getElementById("cityDescription").innerHTML = description;
@@ -56,17 +58,24 @@ function handleWeather() {
       document.getElementById("cityName").innerHTML = name;
       document.getElementById("currentDate").innerHTML = moment().format("MMM Do YYYY");
 
-      $("#cityUVI").each(function () {
-        if (uvi < 3) {
+        $("#cityUVI").each(function () {
+         if (uvi < 3) {
           $(this).addClass("favorable");
-        }
-        else if (uvi >= 3 && uvi <= 8) {
+          $(this).removeClass("moderate");
+          $(this).removeClass("severe");
+         }
+         else if (uvi >= 3 && uvi <= 8) {
           $(this).addClass("moderate");
-        }
+          $(this).removeClass("favorable");
+          $(this).removeClass("severe");
+       }
         else {
-          $(this).addClass("severe")
-        }
-      });
+         $(this).addClass("severe");
+         $(this).removeClass("favorable");
+         $(this).removeClass("moderate");
+      }
+         });
+    
 
       document.getElementById('forecast').innerHTML = '';
 
@@ -94,10 +103,9 @@ function handleWeather() {
 };
 
 
-// $(window).on("load", function () {
-//   $("#city-input").prop("value", citiesArr[0]);
-//   handleWeather();
-// })
-
+$(window).on("load", function () {
+  $("#city-input").prop("value", citiesArr[0]);
+  handleWeather();
+})
 
 

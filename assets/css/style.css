@@ -1,5 +1,14 @@
+body {
+  background: url(https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
 .heading {
-    background-color: rgb(6, 6, 68);
+    background-color: #25396c;
     color: white;
     text-align: center;
     padding: 10px;
@@ -24,7 +33,10 @@
 
  .forecastCard img {
    width: 100px;
+   background-color: #a7ebf4;
+   border-radius: 5px;
  }
+
 
 .hide {
    display: none;
@@ -47,3 +59,17 @@
   background-color: rgb(245, 7, 7);
 }
 
+.btn-primary {
+  background-color: #557988;
+  color: black;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.btn-primary:hover {
+  background: url("https://static6.depositphotos.com/1067431/551/i/600/depositphotos_5510312-stock-photo-warm-sun.jpg") no-repeat;
+}
+
+.card {
+  background-color: #eb6e11;
+}
