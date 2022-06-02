@@ -71,5 +71,7 @@ body {
 }
 
 .card {
-  background-color: #eb6e11;
+  background: none;
+  border: none;
+  color: white;
 }

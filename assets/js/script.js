@@ -109,3 +109,4 @@ $(window).on("load", function () {
 })
 
 
+// localtstorage.clear
