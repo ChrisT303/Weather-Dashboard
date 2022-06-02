@@ -33,7 +33,8 @@ body {
 
  .forecastCard img {
    width: 100px;
-   background-color: #a7ebf4;
+   background: rgb(238,174,202);
+   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,193,233,1) 100%);
    border-radius: 5px;
  }
 

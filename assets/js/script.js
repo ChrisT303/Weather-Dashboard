@@ -108,5 +108,7 @@ $(window).on("load", function () {
   handleWeather();
 })
 
-
-// localtstorage.clear
+function handleClear(){
+  document.getElementById('searchHistory').innerHTML = '';
+  localStorage.clear();
+}
