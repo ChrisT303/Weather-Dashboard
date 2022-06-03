@@ -29,6 +29,8 @@
     </div>
   </header>
 
+  <!-- Card for city input, dispaly of buttons of cities searches, and clear button -->
+
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
@@ -39,11 +41,12 @@
             <button class="btn btn-primary" type="button" id="search-button"><i class="fas fa-search"></i></button>
           </div>
           <div id="searchHistory" class="container d-grid gap-2"></div> 
-          <button onclick="handleClear()" class="container d-grid gap-2 btn-primary ">Clear History</button>
+          <!-- click listener was added hear to clear html and local storage -->
+          <button id="clearBtn" onclick="handleClear()" class="container d-grid gap-2 btn-primary ">Clear History</button>
         </div>
       </div>
     
-      
+      <!-- main card for city searched weather -->
       <div class="col-lg-9">
         <div class="card container d-flex">
           <div class="card-body">
@@ -62,7 +65,7 @@
           </div>
         </div>
         <br>
-
+           <!-- 5 day forecast section -->
         <div class="row d-flex flex-row text-white">
           <h2>5 Day Forecast:</h2>
           <div id="forecast"></div>

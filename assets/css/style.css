@@ -76,3 +76,15 @@ body {
   border: none;
   color: white;
 }
+
+#clearBtn {
+  padding-top: 10px;
+  margin-left: 70px;
+  width: fit-content;
+  height: 55px;
+  border-radius: 80px / 100px;
+}
+
+
+
+  
