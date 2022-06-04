@@ -97,7 +97,7 @@ function handleWeather() {
         document.getElementById('forecast').innerHTML +=
           `<div class="forecastCard">
               <h5>${date}</h5>
-              <img src="http://openweathermap.org/img/w/${icon2}.png">
+              <img src="https://openweathermap.org/img/w/${icon2}.png">
               <h6>Temp: ${Math.round(temp) + "°"}</h6>
               <h6>Wind: ${Math.round(wind) + " mph"}</h6>
              <h6>Humidity: ${humidity + "%"}</h6>
