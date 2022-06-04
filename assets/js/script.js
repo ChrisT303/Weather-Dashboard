@@ -1,4 +1,3 @@
-
 // evalutates local storage or empty array
 let citiesArr = eval(localStorage.cities) || [];
 // calls save storage function
