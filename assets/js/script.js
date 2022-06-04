@@ -35,7 +35,7 @@ function handleWeather() {
   let city = document.querySelector('input').value;
   // if no city entered nothing happens 
   if (!city) return;
-  let url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  let url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
   // API fetch
   fetch(url).then(data => data.json()).then(data => {
     let { lat, lon } = data[0];
@@ -46,7 +46,7 @@ function handleWeather() {
     fetch(url2).then(data => data.json()).then(data => {
       saveStorage(city);
       console.log(data);
-      let icon = `http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`
+      let icon = `https://openweathermap.org/img/w/${data.current.weather[0].icon}.png`
       
       // varibales for each weather retlated attribute 
       let description = data.current.weather[0].description;
