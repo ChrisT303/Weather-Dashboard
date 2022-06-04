@@ -1,3 +1,5 @@
+Link to Weather Dashboard: https://deftonechris.github.io/Weather-Dashboard/
+
 This app was created for the user to search the weather anywhere in the world.
 
 The app displays the current weather conditons for searches city along with:
