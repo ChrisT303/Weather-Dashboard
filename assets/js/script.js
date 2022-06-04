@@ -1,3 +1,4 @@
+const apiKey = "9821af4b5fd3bcd16add54c3c57c7e82";
 // evalutates local storage or empty array
 let citiesArr = eval(localStorage.cities) || [];
 // calls save storage function
